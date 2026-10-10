@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ch3lqw3rgtkoq" path="res://assets/art/world/home/luminaria.png" id="6_qpk70"]
 [ext_resource type="Texture2D" uid="uid://cjx12c7kg0bmd" path="res://assets/art/world/home/shelf_2.png" id="7_ll5lq"]
 [ext_resource type="Texture2D" uid="uid://cv4noqjb4nm5e" path="res://assets/art/world/home/escada1.png" id="9_0bqwe"]
+[ext_resource type="PackedScene" path="res://src/ui/player_hud.tscn" id="10_hudsc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6b1k3"]
 texture = ExtResource("3_xlg7c")
@@ -39,7 +40,7 @@ size = Vector2(36, 170)
 [node name="LevelHome" type="Node2D" unique_id=1178154373]
 script = ExtResource("1_17rxn")
 
-[node name="bckground" type="TileMapLayer" parent="." unique_id=109996418]
+[node name="background" type="TileMapLayer" parent="." unique_id=109996418]
 tile_map_data = PackedByteArray(0, 0, 9, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 29, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_coyv1")
 
@@ -125,24 +126,23 @@ position = Vector2(2, 5)
 texture = ExtResource("7_ll5lq")
 
 [node name="LeftWall" type="StaticBody2D" parent="Environment" unique_id=1359713772]
+position = Vector2(-27, 89)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftWall" unique_id=1805259272]
-position = Vector2(-26, 89)
 shape = SubResource("RectangleShape2D_17rxn")
 
 [node name="RightWall" type="StaticBody2D" parent="Environment" unique_id=1539010856]
-position = Vector2(667.5, 0)
+position = Vector2(672, 88)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RightWall" unique_id=1498073922]
-position = Vector2(0, 89)
 shape = SubResource("RectangleShape2D_17rxn")
 
 [node name="Items" type="Node2D" parent="." unique_id=1080429306]
+position = Vector2(142, 70)
 
 [node name="Bottle" parent="Items" unique_id=765116808 instance=ExtResource("2_33cqm")]
-position = Vector2(142, 68)
 
 [node name="escada" type="Area2D" parent="." unique_id=1884546343]
 position = Vector2(935, 86)
@@ -157,11 +157,13 @@ position = Vector2(-314, 3)
 texture = ExtResource("9_0bqwe")
 
 [node name="Caju" parent="." unique_id=1433414996 instance=ExtResource("1_5kiuu")]
-position = Vector2(18, 25)
+position = Vector2(40, 52)
 is_active = true
 
 [node name="Caju2" parent="." unique_id=481725360 instance=ExtResource("1_5kiuu")]
 position = Vector2(583, 22)
+
+[node name="PlayerHUD" parent="." instance=ExtResource("10_hudsc")]
 
 [connection signal="body_entered" from="escada" to="." method="_on_escada_body_entered"]
 [connection signal="body_exited" from="escada" to="." method="_on_escada_body_exited"]

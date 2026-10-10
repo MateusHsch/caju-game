@@ -6,6 +6,7 @@ extends Node2D
 ## and scene transition when both characters reach the top of the ladder.
 
 const TutorialPopupClass = preload("res://src/ui/tutorial_popup.gd")
+const PlayerHUDClass = preload("res://src/ui/player_hud.gd")
 const NEXT_LEVEL_PATH = "res://src/levels/home/level_home_2.tscn"
 
 # Limite superior de Y para considerar que tocou a borda superior da tela
@@ -38,11 +39,18 @@ func _ready() -> void:
 	
 	# Instancia o popup de tutorial com botão '?'
 	_setup_tutorial_popup()
+	_setup_player_hud()
 
 func _setup_tutorial_popup() -> void:
 	var popup = TutorialPopupClass.new()
 	popup.name = "TutorialPopup"
 	add_child(popup)
+
+func _setup_player_hud() -> void:
+	if not has_node("PlayerHUD"):
+		var hud = PlayerHUDClass.new()
+		hud.name = "PlayerHUD"
+		add_child(hud)
 
 func _physics_process(_delta: float) -> void:
 	if _transitioning:
@@ -62,7 +70,7 @@ func _physics_process(_delta: float) -> void:
 			_caju2_at_top = false
 	
 	# Transita para a nova fase quando ambos terminarem de subir tocando o topo
-	if _caju1_at_top and _caju2_at_top:
+	if _caju1_at_top or _caju2_at_top:
 		_start_level_transition()
 
 func _on_escada_body_entered(body: Node2D) -> void:

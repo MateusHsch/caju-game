@@ -6,6 +6,7 @@ extends Node2D
 ## Manages character switching, ladder mechanics, and completion.
 
 const TutorialPopupClass = preload("res://src/ui/tutorial_popup.gd")
+const PlayerHUDClass = preload("res://src/ui/player_hud.gd")
 const TOP_SCREEN_Y_THRESHOLD: float = 16.0
 
 var caju1: CharacterBody2D
@@ -33,6 +34,7 @@ func _ready() -> void:
 
 	# Instancia o tutorial popup (com botão '?' no canto)
 	_setup_tutorial_popup()
+	_setup_player_hud()
 
 func _setup_tutorial_popup() -> void:
 	var popup = TutorialPopupClass.new()
@@ -42,6 +44,12 @@ func _setup_tutorial_popup() -> void:
 	# Mas como o TutorialPopup abre e fecha com 'Entendido', o jogador pode fechar ou consultar
 	# Vamos fechar direto se preferir, ou deixar padrão
 	popup.call_deferred("_hide_tutorial")
+
+func _setup_player_hud() -> void:
+	if not has_node("PlayerHUD"):
+		var hud = PlayerHUDClass.new()
+		hud.name = "PlayerHUD"
+		add_child(hud)
 
 func _physics_process(_delta: float) -> void:
 	if _completed:

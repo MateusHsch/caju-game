@@ -7,6 +7,11 @@ extends CharacterBody2D
 
 signal activated
 signal deactivated
+signal health_changed(current: int, max_val: int)
+
+@export_group("Health")
+@export var max_health: int = 3
+@export var current_health: int = 3
 
 @export_group("Movement")
 @export var speed: float = 120.0
@@ -188,6 +193,24 @@ func make_inactive() -> void:
 	if camera:
 		camera.enabled = false
 	deactivated.emit()
+
+func take_damage(amount: int = 1) -> void:
+	current_health = clampi(current_health - amount, 0, max_health)
+	health_changed.emit(current_health, max_health)
+	if has_node("/root/EventBus"):
+		get_node("/root/EventBus").player_health_changed.emit(self, current_health, max_health)
+
+func heal(amount: int = 1) -> void:
+	current_health = clampi(current_health + amount, 0, max_health)
+	health_changed.emit(current_health, max_health)
+	if has_node("/root/EventBus"):
+		get_node("/root/EventBus").player_health_changed.emit(self, current_health, max_health)
+
+func set_health(val: int) -> void:
+	current_health = clampi(val, 0, max_health)
+	health_changed.emit(current_health, max_health)
+	if has_node("/root/EventBus"):
+		get_node("/root/EventBus").player_health_changed.emit(self, current_health, max_health)
 
 func _exit_tree() -> void:
 	if has_node("/root/GameManager"):
