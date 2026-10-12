@@ -171,10 +171,14 @@ func _show_tutorial() -> void:
 	overlay.show()
 	center_container.show()
 	help_button.hide()
-	get_tree().paused = true
+	var tree: SceneTree = get_tree()
+	if tree:
+		tree.paused = true
 
 func _hide_tutorial() -> void:
 	overlay.hide()
 	center_container.hide()
 	help_button.show()
-	get_tree().paused = false
+	var tree: SceneTree = get_tree()
+	if tree:
+		tree.paused = false

@@ -9,6 +9,16 @@ signal activated
 signal deactivated
 signal health_changed(current: int, max_val: int)
 
+@export_group("Identity")
+@export var character_id: String = "caju"
+@export var character_name: String = "Caju"
+@export var portrait_texture: Texture2D = null
+
+@export_group("Glide Mechanics")
+@export var can_glide: bool = false
+@export var glide_max_fall_speed: float = 35.0
+@export var glide_gravity_scale: float = 0.15
+
 @export_group("Health")
 @export var max_health: int = 3
 @export var current_health: int = 3
@@ -31,6 +41,7 @@ signal health_changed(current: int, max_val: int)
 @export var is_active: bool = false
 
 var na_escada: bool = false
+var is_gliding: bool = false
 const VELOCIDADE_ESCALADA = 150.0 # Ajuste a velocidade como preferir
 
 # Internal kinematics
@@ -82,6 +93,7 @@ func _physics_process(delta: float) -> void:
 	
 	# --- LÓGICA DE ESCADA VS GRAVIDADE ---
 	if na_escada:
+		is_gliding = false
 		if is_active:
 			# Somente o personagem ativo pode subir/descer a escada
 			# Suporta perfeitamente WASD (W/S) e setas direcionais (Cima/Baixo)
@@ -98,7 +110,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		var gravity: float = jump_gravity if velocity.y < 0.0 else fall_gravity
 		if not is_on_floor():
-			velocity.y += gravity * delta
+			if can_glide and is_active and velocity.y > 0.0 and (Input.is_action_pressed("jump") or Input.is_action_pressed("ui_accept")):
+				is_gliding = true
+				velocity.y += gravity * glide_gravity_scale * delta
+				if velocity.y > glide_max_fall_speed:
+					velocity.y = glide_max_fall_speed
+			else:
+				is_gliding = false
+				velocity.y += gravity * delta
+		else:
+			is_gliding = false
 			
 	# Check landing for signals
 	if not _was_on_floor and is_on_floor():
@@ -172,20 +193,25 @@ func _update_animation() -> void:
 			anim.pause()
 		return # Interrompe aqui para não rodar mais nada!
 	
-	# --- Restantes animações (Chão / Pulo) ---
+	# --- Restantes animações (Chão / Pulo / Planar) ---
 	if is_on_floor():
 		if abs(velocity.x) > 5.0:
 			anim.play("walk")
 		else:
 			anim.play("idle")
 	else:
-		anim.play("jump_1")
+		if is_gliding:
+			anim.play("glide")
+		else:
+			anim.play("jump")
 
 func make_active() -> void:
 	is_active = true
 	if camera:
 		camera.enabled = true
 		camera.make_current()
+	if has_node("/root/GameManager"):
+		get_node("/root/GameManager").active_player = self
 	activated.emit()
 
 func make_inactive() -> void:
@@ -193,6 +219,13 @@ func make_inactive() -> void:
 	if camera:
 		camera.enabled = false
 	deactivated.emit()
+
+func set_camera_limits(left: int, right: int, top: int, bottom: int) -> void:
+	if camera:
+		camera.limit_left = left
+		camera.limit_right = right
+		camera.limit_top = top
+		camera.limit_bottom = bottom
 
 func take_damage(amount: int = 1) -> void:
 	current_health = clampi(current_health - amount, 0, max_health)

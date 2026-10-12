@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://c6v2oak8kiki1"]
+
+[ext_resource type="Script" uid="uid://dtpnfsid3jmhx" path="res://src/entities/player/player.gd" id="1_7gxvo"]
+[ext_resource type="Texture2D" uid="uid://cme8yurk7n7ba" path="res://assets/art/characters/kiki/kiki_parada.png" id="2_parada"]
+[ext_resource type="Texture2D" uid="uid://dbx8h3ivklyxm" path="res://assets/art/characters/kiki/kiki_andando.png" id="3_andando"]
+[ext_resource type="Texture2D" uid="uid://0ecxbjuenxv" path="res://assets/art/characters/kiki/kiki_pulando.png" id="4_pulando"]
+[ext_resource type="Texture2D" uid="uid://k0flxnhl4b1n" path="res://assets/art/characters/kiki/kiki_voando.png" id="5_voando"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiki"]
+size = Vector2(18, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
+atlas = ExtResource("2_parada")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glide0"]
+atlas = ExtResource("5_voando")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
+atlas = ExtResource("2_parada")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
+atlas = ExtResource("2_parada")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
+atlas = ExtResource("2_parada")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksn8l"]
+atlas = ExtResource("4_pulando")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk0"]
+atlas = ExtResource("3_andando")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk1"]
+atlas = ExtResource("3_andando")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk2"]
+atlas = ExtResource("3_andando")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_walk3"]
+atlas = ExtResource("3_andando")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kiki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle0")
+}],
+"loop": 1,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glide0")
+}],
+"loop": 1,
+"name": &"glide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksn8l")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_walk3")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="Kiki" type="CharacterBody2D" unique_id=208912837 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_7gxvo")
+character_id = "kiki"
+character_name = "Kiki"
+can_glide = true
+jump_height = 32.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=149812734]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_kiki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=184920194]
+sprite_frames = SubResource("SpriteFrames_kiki")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.6510747
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=98712345]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1100
+limit_bottom = 180
+position_smoothing_speed = 3.0

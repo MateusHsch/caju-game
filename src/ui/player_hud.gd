@@ -7,8 +7,8 @@ extends CanvasLayer
 
 const TEXTURE_CORACAO_CHEIO = preload("res://assets/art/ui/coracao_cheio.png")
 const TEXTURE_CORACAO_VAZIO = preload("res://assets/art/ui/coracao_vazio.png")
-const TEXTURE_PORTRAIT_CAJU1 = preload("res://assets/art/ui/personagem_caju.png")
-const TEXTURE_PORTRAIT_CAJU2 = preload("res://assets/art/ui/personagem_caju2.png")
+const TEXTURE_PORTRAIT_CAJU = preload("res://assets/art/ui/personagem_caju.png")
+const TEXTURE_PORTRAIT_KIKI = preload("res://assets/art/ui/personagem_kiki.png")
 
 @export var max_health: int = 3
 var current_health: int = 3
@@ -53,7 +53,7 @@ func _build_ui() -> void:
 	
 	portrait = TextureRect.new()
 	portrait.name = "Portrait"
-	portrait.texture = TEXTURE_PORTRAIT_CAJU1
+	portrait.texture = TEXTURE_PORTRAIT_CAJU
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP
 	portrait.custom_minimum_size = Vector2(25, 25)
 	hbox.add_child(portrait)
@@ -105,16 +105,25 @@ func set_character_portrait(texture: Texture2D) -> void:
 	if portrait and texture:
 		portrait.texture = texture
 
+var _kiki_portrait: AtlasTexture = null
+
+func _get_kiki_portrait() -> AtlasTexture:
+	if _kiki_portrait == null:
+		_kiki_portrait = AtlasTexture.new()
+		_kiki_portrait.atlas = preload("res://assets/art/characters/kiki/kiki_parada.png")
+		_kiki_portrait.region = Rect2(4, 4, 24, 24)
+	return _kiki_portrait
+
 func update_for_player(player: CharacterBody2D) -> void:
 	if not player:
 		return
 	if "current_health" in player:
 		set_health(player.current_health)
 	
-	if "2" in player.name:
-		set_character_portrait(TEXTURE_PORTRAIT_CAJU2)
-	else:
-		set_character_portrait(TEXTURE_PORTRAIT_CAJU1)
+	if player.character_id == "caju":
+		set_character_portrait(TEXTURE_PORTRAIT_CAJU)
+	elif player.character_id == "kiki":
+		set_character_portrait(TEXTURE_PORTRAIT_KIKI)
 
 func _update_hearts_display() -> void:
 	for i in range(heart_icons.size()):

@@ -12,14 +12,18 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event: InputEvent) -> void:
+	var tree: SceneTree = get_tree()
+	if tree and tree.paused:
+		return
 	if event.is_action_pressed("switch_character") or event.is_action_pressed("ui_focus_next"):
 		switch_player()
 
 func register_player(player: CharacterBody2D) -> void:
 	if not players.has(player):
 		players.append(player)
-		if active_player == null and ("is_active" in player and player.is_active):
-			active_player = player
+		if active_player == null:
+			if ("is_active" in player and player.is_active) or players.size() == 1:
+				active_player = player
 
 func unregister_player(player: CharacterBody2D) -> void:
 	players.erase(player)
