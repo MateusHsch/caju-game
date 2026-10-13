@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://da364gxrstu3m" path="res://assets/art/world/jardim/ceu_azul.png" id="2_67724"]
 [ext_resource type="Texture2D" uid="uid://b83x8633rk04h" path="res://assets/art/world/telhado/arvore_noite.png" id="3_oxnwp"]
 [ext_resource type="Texture2D" uid="uid://cx0udgr8km5cl" path="res://assets/art/world/jardim/arvore_dia.png" id="3_uojfd"]
+[ext_resource type="PackedScene" uid="uid://cbsapmr426cao" path="res://src/entities/player/tody.tscn" id="4_67724"]
 [ext_resource type="PackedScene" uid="uid://cmlkcuy4xqkcj" path="res://src/entities/player/caju.tscn" id="5_xg2l2"]
-[ext_resource type="PackedScene" uid="uid://c6v2oak8kiki1" path="res://src/entities/player/kiki.tscn" id="6_8tdh2"]
 [ext_resource type="PackedScene" path="res://src/ui/player_hud.tscn" id="7_6pexq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ms7bx"]
@@ -251,41 +251,31 @@ tile_set = SubResource("TileSet_dtg5i")
 
 [node name="BackgroundTrees" type="Node2D" parent="." unique_id=1324319186]
 
-[node name="arvore_bg_1" type="Sprite2D" parent="BackgroundTrees" unique_id=1990075305]
-modulate = Color(0.65, 0.7, 0.85, 1)
-position = Vector2(78, 119)
-scale = Vector2(1.1125001, 1.1125001)
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundTrees" unique_id=387589379]
+position = Vector2(168, 133)
 texture = ExtResource("3_uojfd")
 
-[node name="arvore_bg_2" type="Sprite2D" parent="BackgroundTrees" unique_id=1764885107]
-modulate = Color(0.65, 0.7, 0.85, 1)
-position = Vector2(270, 118)
-scale = Vector2(1.1125001, 1.1125001)
+[node name="Sprite2D2" type="Sprite2D" parent="BackgroundTrees" unique_id=1647179493]
+position = Vector2(18, 146)
 texture = ExtResource("3_uojfd")
 
-[node name="arvore_bg_3" type="Sprite2D" parent="BackgroundTrees" unique_id=1418106291]
-modulate = Color(0.65, 0.7, 0.85, 1)
-position = Vector2(294, 122)
-scale = Vector2(1.1125001, 1.1125001)
+[node name="Sprite2D3" type="Sprite2D" parent="BackgroundTrees" unique_id=1172886896]
+position = Vector2(426, 144)
 texture = ExtResource("3_uojfd")
 
-[node name="arvore_bg_4" type="Sprite2D" parent="BackgroundTrees" unique_id=2016063817]
-modulate = Color(0.65, 0.7, 0.85, 1)
-position = Vector2(493.99997, 119)
-scale = Vector2(1.1125001, 1.1125001)
+[node name="Sprite2D4" type="Sprite2D" parent="BackgroundTrees" unique_id=332893189]
+position = Vector2(661, 144)
 texture = ExtResource("3_uojfd")
 
-[node name="arvore_bg_5" type="Sprite2D" parent="BackgroundTrees" unique_id=988327136]
-modulate = Color(0.65, 0.7, 0.85, 1)
-position = Vector2(642, 126.99999)
-scale = Vector2(1.1125001, 1.1125001)
+[node name="Sprite2D5" type="Sprite2D" parent="BackgroundTrees" unique_id=16264703]
+position = Vector2(728, 137)
 texture = ExtResource("3_uojfd")
 
-[node name="Caju" parent="." unique_id=189020559 instance=ExtResource("5_xg2l2")]
+[node name="Caju2" parent="." unique_id=189020559 instance=ExtResource("4_67724")]
+position = Vector2(75, 141)
+
+[node name="Caju" parent="." unique_id=390158007 instance=ExtResource("5_xg2l2")]
 position = Vector2(25, 150)
-
-[node name="Kiki" parent="." unique_id=124830769 instance=ExtResource("6_8tdh2")]
-position = Vector2(105, 141)
 
 [node name="limite_esquerdo" type="StaticBody2D" parent="." unique_id=49162973]
 position = Vector2(-10, 86)

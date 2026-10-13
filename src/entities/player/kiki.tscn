@@ -3,57 +3,48 @@
 [ext_resource type="Script" uid="uid://dtpnfsid3jmhx" path="res://src/entities/player/player.gd" id="1_7gxvo"]
 [ext_resource type="Texture2D" uid="uid://cme8yurk7n7ba" path="res://assets/art/characters/kiki/kiki_parada.png" id="2_parada"]
 [ext_resource type="Texture2D" uid="uid://dbx8h3ivklyxm" path="res://assets/art/characters/kiki/kiki_andando.png" id="3_andando"]
-[ext_resource type="Texture2D" uid="uid://0ecxbjuenxv" path="res://assets/art/characters/kiki/kiki_pulando.png" id="4_pulando"]
 [ext_resource type="Texture2D" uid="uid://k0flxnhl4b1n" path="res://assets/art/characters/kiki/kiki_voando.png" id="5_voando"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kiki"]
-size = Vector2(18, 28)
+size = Vector2(15, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt13c"]
 atlas = ExtResource("2_parada")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_glide0"]
-atlas = ExtResource("5_voando")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_of4v0"]
 atlas = ExtResource("2_parada")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqp0i"]
 atlas = ExtResource("2_parada")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf40c"]
 atlas = ExtResource("2_parada")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(0, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksn8l"]
-atlas = ExtResource("4_pulando")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_walk0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tncum"]
 atlas = ExtResource("3_andando")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_walk1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_re3fm"]
 atlas = ExtResource("3_andando")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_walk2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs2fw"]
 atlas = ExtResource("3_andando")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_walk3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4epom"]
 atlas = ExtResource("3_andando")
-region = Rect2(0, 96, 32, 32)
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kiki"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle0")
+"texture": ExtResource("5_voando")
 }],
 "loop": 1,
 "name": &"climb",
@@ -61,7 +52,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_glide0")
+"texture": ExtResource("5_voando")
 }],
 "loop": 1,
 "name": &"glide",
@@ -69,16 +60,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle0")
+"texture": SubResource("AtlasTexture_gt13c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle1")
+"texture": SubResource("AtlasTexture_of4v0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle2")
+"texture": SubResource("AtlasTexture_eqp0i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle3")
+"texture": SubResource("AtlasTexture_cf40c")
 }],
 "loop": 1,
 "name": &"idle",
@@ -86,28 +77,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ksn8l")
+"texture": ExtResource("5_voando")
 }],
-"loop": 0,
+"loop": 1,
 "name": &"jump",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_walk0")
+"texture": SubResource("AtlasTexture_tncum")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_walk1")
+"texture": SubResource("AtlasTexture_re3fm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_walk2")
+"texture": SubResource("AtlasTexture_bs2fw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_walk3")
+"texture": SubResource("AtlasTexture_4epom")
 }],
 "loop": 1,
 "name": &"walk",
-"speed": 6.0
+"speed": 5.0
 }]
 
 [node name="Kiki" type="CharacterBody2D" unique_id=208912837 groups=["player"]]
@@ -119,19 +110,18 @@ can_glide = true
 jump_height = 32.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=149812734]
-position = Vector2(0, 2)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_kiki")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=184920194]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_kiki")
-animation = &"walk"
-autoplay = "idle"
-frame_progress = 0.6510747
+animation = &"climb"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=98712345]
 process_callback = 0
 limit_left = 0
 limit_top = 0
-limit_right = 1100
+limit_right = 645
 limit_bottom = 180
 position_smoothing_speed = 3.0
