@@ -7,6 +7,8 @@ var active_player: CharacterBody2D = null
 var players: Array[CharacterBody2D] = []
 var collected_bottles: int = 0
 var score: int = 0
+var level_total_items: int = 0
+var level_collected_items: int = 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -48,7 +50,19 @@ func switch_player() -> void:
 		
 	EventBus.player_swapped.emit(active_player)
 
+func set_level_items(total: int) -> void:
+	level_total_items = total
+	level_collected_items = 0
+	if has_node("/root/EventBus"):
+		EventBus.level_items_updated.emit(level_collected_items, level_total_items)
+
+func are_all_level_items_collected() -> bool:
+	return level_collected_items >= level_total_items
+
 func collect_bottle(collector: CharacterBody2D) -> void:
 	collected_bottles += 1
+	level_collected_items += 1
 	score += 10
-	EventBus.item_collected.emit("bottle", collector)
+	if has_node("/root/EventBus"):
+		EventBus.item_collected.emit("bottle", collector)
+		EventBus.level_items_updated.emit(level_collected_items, level_total_items)

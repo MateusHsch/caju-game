@@ -84,11 +84,23 @@ func _build_ui() -> void:
 	
 	# Instruções de controle com cor escura legível
 	var controls_text = Label.new()
-	controls_text.text = "• Mover: A / D  ou  ← / →\n• Pular: W, Espaço ou ↑\n• Escada: W / S  ou  ↑ / ↓\n• Trocar Personagem: TAB\n\nSuba a escada até o topo com\nambos para passar de fase!"
+	controls_text.text = "• Mover: W / A / S / D  ou  ← / ↑ / ↓ / →\n• Interagir: E\n• Trocar Personagem: TAB"
 	controls_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	controls_text.add_theme_font_size_override("font_size", 7)
 	controls_text.add_theme_color_override("font_color", Color(0.22, 0.19, 0.18))
 	vbox.add_child(controls_text)
+	
+	# Separador sutil com tom terrosohsep = HSeparator.new()
+	hsep = HSeparator.new()
+	hsep.add_theme_stylebox_override("separator", sep_style)
+	vbox.add_child(hsep)
+	
+	var objective_text = Label.new()
+	objective_text.text = "Colete os pertences e suba a escada\naté o topo para passar de fase!"
+	objective_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	objective_text.add_theme_font_size_override("font_size", 7)
+	objective_text.add_theme_color_override("font_color", Color(0.22, 0.19, 0.18))
+	vbox.add_child(objective_text)
 	
 	# Botão fechar estilizado com fundo_botao.png
 	close_button = Button.new()

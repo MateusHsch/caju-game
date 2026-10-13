@@ -8,6 +8,7 @@ extends CharacterBody2D
 signal activated
 signal deactivated
 signal health_changed(current: int, max_val: int)
+signal interacted(target: Node2D)
 
 @export_group("Identity")
 @export var character_id: String = "caju"
@@ -152,6 +153,49 @@ func _process_active_input(delta: float) -> void:
 	# Variable jump height: release early to perform micro-jumps
 	if _is_jump_just_released() and velocity.y < 0.0:
 		velocity.y *= 0.5
+
+	# Interaction with items / objects (Key 'E')
+	if Input.is_action_just_pressed("interact"):
+		interact_with_nearby()
+
+func interact_with_nearby() -> bool:
+	if not is_inside_tree():
+		return false
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	var shape = CircleShape2D.new()
+	shape.radius = 28.0
+	query.shape = shape
+	query.transform = global_transform
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	# Layer 10 (interactables, bit 10 = 512) + Layer 1 (world = 1)
+	query.collision_mask = 512 | 1
+	
+	var results = space_state.intersect_shape(query, 16)
+	for hit in results:
+		var collider = hit.collider
+		if collider and collider != self and collider.has_method("interact"):
+			collider.interact(self)
+			interacted.emit(collider)
+			if has_node("/root/EventBus"):
+				get_node("/root/EventBus").player_interacted.emit(self, collider)
+			return true
+	
+	# Checagem adicional: nós no grupo "interactable" no alcance
+	var interactables = get_tree().get_nodes_in_group("interactable")
+	for node in interactables:
+		if node is Node2D and node != self and global_position.distance_to(node.global_position) <= 36.0:
+			if node.has_method("interact"):
+				node.interact(self)
+				interacted.emit(node)
+				if has_node("/root/EventBus"):
+					get_node("/root/EventBus").player_interacted.emit(self, node)
+				return true
+
+	if has_node("/root/EventBus"):
+		get_node("/root/EventBus").player_interacted.emit(self, null)
+	return false
 
 func _process_inactive_physics(delta: float) -> void:
 	# Inactive character decelerates smoothly and maintains physics

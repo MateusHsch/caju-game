@@ -10,7 +10,7 @@
 - [x] Remover o Caju2 das primeiras fases "res://src/levels/home/". Deve ter apenas um personagem jogavel (Caju) nas fases "home".
 - [x] Adicionar a personagem Kiki para as fases "res://src/levels/telhado/". Kiki pula mais baixo que Caju, mas pode planar. Ela usa as animaçoes idle, walk, jump e glide.
 - [x] Adicionar o asset "res://assets/art/world/telhado/arvore_noite.png" na fase "res://src/levels/telhado/" no fundo da fase e alguns no plano a frente dos pesonagens. No estilo de "inspirations/arvores_telhado.jpg"
-- [ ] Criar uma HUD para coleta de itens logo abaixo da PlayerHUD. Por enquanto, ela deve mostrar um texto falando para coleta os itens, os itens que devem ser coletados na fase e o numero de itens, como em "inspirations itens_HUD.png".
-- [ ] O jogador nao deve poder passar de fase sem ter coletado todos os itens.
-- [ ] Criar um botao de interaçao para o Caju, tecla "E". Para o caju interagir com itens que pode derrubar.
-- [ ] Na fase "res://src/levels/home/home_1.tscn", caju deve ser capaz de interagir a direita da "CaixaPos1". Isso deve derrubar a caixa para esquerda visualmente, porem quero que ela caia exatamente no lugar de "CaixaPos2".
+- [x] Criar uma HUD para coleta de itens logo abaixo da PlayerHUD. Por enquanto, ela deve mostrar um texto falando para coleta os itens, os itens que devem ser coletados na fase e o numero de itens, como em "inspirations itens_HUD.png".
+- [x] O jogador nao deve poder passar de fase sem ter coletado todos os itens.
+- [x] Criar um botao de interaçao para o Caju, tecla "E". Para o caju interagir com itens que pode derrubar.
+- [x] Na fase "res://src/levels/home/home_1.tscn", caju deve ser capaz de interagir a direita da "CaixaPos1". Isso deve derrubar a caixa para esquerda visualmente, porem quero que ela caia exatamente no lugar de "CaixaPos2".

@@ -15,3 +15,7 @@ signal item_collected(item_name: String, collector: CharacterBody2D)
 signal level_completed
 @warning_ignore("unused_signal")
 signal player_health_changed(player: CharacterBody2D, current_health: int, max_health: int)
+@warning_ignore("unused_signal")
+signal player_interacted(player: CharacterBody2D, target: Node2D)
+@warning_ignore("unused_signal")
+signal level_items_updated(collected: int, total: int)

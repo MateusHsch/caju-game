@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cmlkcuy4xqkcj" path="res://src/entities/player/caju.tscn" id="9_noxfy"]
 [ext_resource type="Texture2D" uid="uid://bjusljfxultd1" path="res://assets/raw/crate.png" id="9_oivcu"]
 [ext_resource type="PackedScene" path="res://src/ui/player_hud.tscn" id="10_tefyx"]
+[ext_resource type="Script" uid="uid://cdyme22tybtux" path="res://src/entities/items/pushable_crate.gd" id="11_crate"]
+[ext_resource type="PackedScene" uid="uid://c6v2j8xap2lkn" path="res://src/ui/items_hud.tscn" id="12_ihud"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6b1k3"]
 texture = ExtResource("2_cn4pm")
@@ -95,7 +97,7 @@ position = Vector2(0, -42.75)
 shape = SubResource("RectangleShape2D_25nce")
 
 [node name="Luminaria" type="StaticBody2D" parent="Environment" unique_id=131377667]
-position = Vector2(266, 32)
+position = Vector2(263, 32)
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Luminaria" unique_id=1212227552]
@@ -129,6 +131,8 @@ shape = SubResource("RectangleShape2D_dtg5i")
 
 [node name="CaixaPos1" type="StaticBody2D" parent="Environment" unique_id=906380743]
 position = Vector2(438, 21)
+script = ExtResource("11_crate")
+target_box = NodePath("../CaixaPos2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/CaixaPos1" unique_id=1376098431]
 texture = ExtResource("9_oivcu")
@@ -161,7 +165,7 @@ shape = SubResource("RectangleShape2D_6ttax")
 disabled = true
 
 [node name="Mesa" type="StaticBody2D" parent="Environment" unique_id=1410087394]
-position = Vector2(271, 151)
+position = Vector2(264, 152)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Mesa" unique_id=1586443311]
 position = Vector2(0, 5)
@@ -172,7 +176,7 @@ position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_pi8jn")
 
 [node name="Cadeira" type="StaticBody2D" parent="Environment" unique_id=2066232186]
-position = Vector2(195, 146)
+position = Vector2(188, 148)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Cadeira" unique_id=69462058]
 texture = ExtResource("8_oivcu")
@@ -182,7 +186,7 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_vjuni")
 
 [node name="Cadeira2" type="StaticBody2D" parent="Environment" unique_id=1284260035]
-position = Vector2(347, 146)
+position = Vector2(340, 148)
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Cadeira2" unique_id=746758248]
 texture = ExtResource("8_oivcu")
@@ -223,9 +227,12 @@ position = Vector2(-314, 3)
 texture = ExtResource("8_enpsc")
 
 [node name="Caju" parent="." unique_id=189020559 instance=ExtResource("9_noxfy")]
-position = Vector2(35, 131)
+position = Vector2(31, 160)
+is_active = true
 
 [node name="PlayerHUD" parent="." unique_id=1362306743 instance=ExtResource("10_tefyx")]
+
+[node name="ItemsHUD" parent="." unique_id=1498302181 instance=ExtResource("12_ihud")]
 
 [connection signal="body_entered" from="escada" to="." method="_on_escada_body_entered"]
 [connection signal="body_exited" from="escada" to="." method="_on_escada_body_exited"]
