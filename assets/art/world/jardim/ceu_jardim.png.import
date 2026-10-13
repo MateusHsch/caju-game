@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da364gxrstu3m"
-path="res://.godot/imported/ceu_azul.png-c925f9ed98fd9496c6cc7658cf145900.ctex"
+uid="uid://5j8rhvcy7cnk"
+path="res://.godot/imported/ceu_jardim.png-1d691ea59431ea8dd131cf99603272ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/world/jardim/ceu_azul.png"
-dest_files=["res://.godot/imported/ceu_azul.png-c925f9ed98fd9496c6cc7658cf145900.ctex"]
+source_file="res://assets/art/world/jardim/ceu_jardim.png"
+dest_files=["res://.godot/imported/ceu_jardim.png-1d691ea59431ea8dd131cf99603272ee.ctex"]
 
 [params]
 
