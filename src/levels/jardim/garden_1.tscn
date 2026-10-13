@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsapmr426cao" path="res://src/entities/player/tody.tscn" id="4_67724"]
 [ext_resource type="PackedScene" uid="uid://cmlkcuy4xqkcj" path="res://src/entities/player/caju.tscn" id="5_xg2l2"]
 [ext_resource type="PackedScene" path="res://src/ui/player_hud.tscn" id="7_6pexq"]
+[ext_resource type="Texture2D" uid="uid://dpfpr4jlxaok7" path="res://assets/art/world/jardim/grama.png" id="8_uojfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ms7bx"]
 texture = ExtResource("2_67724")
@@ -241,6 +242,20 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjuni"]
+distance = 1.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jktnn"]
+texture = ExtResource("8_uojfd")
+texture_region_size = Vector2i(5, 5)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_coyv1"]
+tile_size = Vector2i(5, 5)
+sources/0 = SubResource("TileSetAtlasSource_jktnn")
 
 [node name="garden_1" type="Node2D" unique_id=243963542]
 script = ExtResource("1_67724")
@@ -293,6 +308,7 @@ shape = SubResource("WorldBoundaryShape2D_cb6yw")
 position = Vector2(341, 180)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="limite_baixo" unique_id=1578172215]
+position = Vector2(0, -3)
 shape = SubResource("WorldBoundaryShape2D_vjuni")
 
 [node name="ForegroundTrees" type="Node2D" parent="." unique_id=198273641]
@@ -318,3 +334,7 @@ scale = Vector2(1.8125, 1.8125)
 texture = ExtResource("3_oxnwp")
 
 [node name="PlayerHUD" parent="." unique_id=279387564 instance=ExtResource("7_6pexq")]
+
+[node name="grama" type="TileMapLayer" parent="." unique_id=2098405705]
+tile_map_data = PackedByteArray("AAAAACMAAAAAAAAAAAABACMAAAAAAAQAAAACACMAAAAAAAQAAAADACMAAAAAAAEAAAAEACMAAAAAAAQAAAAFACMAAAAAAAQAAAAGACMAAAAAAAIAAAAHACMAAAAAAAQAAAAIACMAAAAAAAQAAAAJACMAAAAAAAQAAAAKACMAAAAAAAAAAAALACMAAAAAAAQAAAAMACMAAAAAAAQAAAANACMAAAAAAAQAAAAOACMAAAAAAAEAAAAPACMAAAAAAAQAAAAQACMAAAAAAAQAAAARACMAAAAAAAIAAAASACMAAAAAAAQAAAATACMAAAAAAAQAAAAUACMAAAAAAAQAAAAVACMAAAAAAAQAAAAWACMAAAAAAAAAAAAXACMAAAAAAAQAAAAYACMAAAAAAAQAAAAZACMAAAAAAAQAAAAaACMAAAAAAAQAAAAbACMAAAAAAAIAAAAcACMAAAAAAAQAAAAdACMAAAAAAAQAAAAeACMAAAAAAAQAAAAfACMAAAAAAAQAAAAgACMAAAAAAAAAAAAhACMAAAAAAAQAAAAiACMAAAAAAAQAAAAjACMAAAAAAAQAAAAkACMAAAAAAAQAAAAlACMAAAAAAAQAAAAmACMAAAAAAAQAAAAnACMAAAAAAAIAAAAoACMAAAAAAAQAAAApACMAAAAAAAQAAAAqACMAAAAAAAQAAAArACMAAAAAAAQAAAAsACMAAAAAAAQAAAAtACMAAAAAAAEAAAAuACMAAAAAAAQAAAAvACMAAAAAAAQAAAAwACMAAAAAAAQAAAAxACMAAAAAAAQAAAAyACMAAAAAAAMAAAAzACMAAAAAAAQAAAA0ACMAAAAAAAQAAAA1ACMAAAAAAAEAAAA2ACMAAAAAAAQAAAA3ACMAAAAAAAMAAAA4ACMAAAAAAAQAAAA5ACMAAAAAAAQAAAA6ACMAAAAAAAQAAAA7ACMAAAAAAAQAAAA/ACMAAAAAAAQAAAA+ACMAAAAAAAQAAAA9ACMAAAAAAAQAAAA8ACMAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_coyv1")
