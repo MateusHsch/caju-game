@@ -155,8 +155,9 @@ func _process_active_input(delta: float) -> void:
 		velocity.y *= 0.5
 
 	# Interaction with items / objects (Key 'E')
-	if Input.is_action_just_pressed("interact"):
-		interact_with_nearby()
+	if (Input.is_action_just_pressed("interact")):
+		if Input.is_action_just_pressed("interact"):
+			interact_with_nearby()
 
 func interact_with_nearby() -> bool:
 	if not is_inside_tree():
