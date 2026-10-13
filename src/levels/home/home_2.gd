@@ -10,20 +10,18 @@ const PlayerHUDClass = preload("res://src/ui/player_hud.gd")
 const ItemsHUDClass = preload("res://src/ui/items_hud.gd")
 const TOP_SCREEN_Y_THRESHOLD: float = 16.0
 
-var caju1: CharacterBody2D
+var caju: CharacterBody2D
 var items_hud: CanvasLayer
 
-var _caju1_at_top: bool = false
+var _caju_at_top: bool = false
 var _completed: bool = false
 
 func _ready() -> void:
 	if has_node("Caju"):
-		caju1 = get_node("Caju")
-	elif has_node("Entities/Players/Caju"):
-		caju1 = get_node("Entities/Players/Caju")
+		caju = get_node("Caju")
 
-	if caju1 and caju1.has_method("make_active"):
-		caju1.make_active()
+	if caju and caju.has_method("make_active"):
+		caju.make_active()
 
 	# Instancia o tutorial popup (com botão '?' no canto)
 	_setup_tutorial_popup()
@@ -64,19 +62,19 @@ func _physics_process(_delta: float) -> void:
 	if _completed:
 		return
 	
-	if caju1 and "na_escada" in caju1:
-		if caju1.na_escada and caju1.position.y <= TOP_SCREEN_Y_THRESHOLD:
+	if caju and "na_escada" in caju:
+		if caju.na_escada and caju.position.y <= TOP_SCREEN_Y_THRESHOLD:
 			if has_node("/root/GameManager") and not GameManager.are_all_level_items_collected():
-				caju1.position.y = TOP_SCREEN_Y_THRESHOLD + 2.0
-				_caju1_at_top = false
+				caju.position.y = TOP_SCREEN_Y_THRESHOLD + 2.0
+				_caju_at_top = false
 				if items_hud and items_hud.has_method("flash_warning"):
 					items_hud.flash_warning()
 				return
-			_caju1_at_top = true
-		elif not caju1.na_escada or caju1.position.y > TOP_SCREEN_Y_THRESHOLD + 20.0:
-			_caju1_at_top = false
+			_caju_at_top = true
+		elif not caju.na_escada or caju.position.y > TOP_SCREEN_Y_THRESHOLD + 20.0:
+			_caju_at_top = false
 	
-	if _caju1_at_top:
+	if _caju_at_top:
 		_on_level_finished()
 
 func _on_escada_body_entered(body: Node2D) -> void:
