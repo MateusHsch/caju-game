@@ -7,7 +7,7 @@ const TutorialPopupClass = preload("res://src/ui/tutorial_popup_2.gd")
 const PlayerHUDClass = preload("res://src/ui/player_hud.gd")
 
 @export var caju: CharacterBody2D
-@export var kiki: CharacterBody2D
+@export var tody: CharacterBody2D
 
 var current_player: CharacterBody2D
 
@@ -19,11 +19,11 @@ func _ready() -> void:
 	else:
 		print("ERRO: Caju não foi encontrado!")
 	
-	if has_node("Kiki"):
-		kiki = get_node("Kiki")
-		kiki.set_camera_limits(0, 1115, 0, 180)
+	if has_node("Tody"):
+		tody = get_node("Tody")
+		tody.set_camera_limits(0, 1115, 0, 180)
 	else:
-		print("ERRO: Kiki não foi encontrada!")
+		print("ERRO: Tody não foi encontrada!")
 
 	# Define o Caju como ativo
 	if caju and caju.has_method("make_active"):
@@ -31,10 +31,10 @@ func _ready() -> void:
 	else:
 		print("ERRO: Caju sem make_active!")
 	
-	if kiki and kiki.has_method("make_inactive"):
-		kiki.make_inactive()
+	if tody and tody.has_method("make_inactive"):
+		tody.make_inactive()
 	else:
-		print("ERRO: Kiki sem make_active!")
+		print("ERRO: Tody sem make_active!")
 		
 	# Instancia o popup de tutorial com botão '?'
 	_setup_tutorial_popup()
@@ -60,13 +60,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func switch_character() -> void:
 	# Só permite a troca se AMBOS os personagens existirem na cena
-	if caju and kiki:
+	if caju and tody:
 		if current_player == caju:
 			caju.make_inactive()
-			kiki.make_active()
-			current_player = kiki
+			tody.make_active()
+			current_player = tody
 		else:
-			kiki.make_inactive()
+			tody.make_inactive()
 			caju.make_active()
 			current_player = caju
 

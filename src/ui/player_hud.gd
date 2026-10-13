@@ -9,6 +9,7 @@ const TEXTURE_CORACAO_CHEIO = preload("res://assets/art/ui/coracao_cheio.png")
 const TEXTURE_CORACAO_VAZIO = preload("res://assets/art/ui/coracao_vazio.png")
 const TEXTURE_PORTRAIT_CAJU = preload("res://assets/art/ui/personagem_caju.png")
 const TEXTURE_PORTRAIT_KIKI = preload("res://assets/art/ui/personagem_kiki.png")
+const TEXTURE_PORTRAIT_TODY = preload("res://assets/art/ui/personagem_tody.png")
 
 @export var max_health: int = 3
 var current_health: int = 3
@@ -114,6 +115,14 @@ func _get_kiki_portrait() -> AtlasTexture:
 		_kiki_portrait.region = Rect2(4, 4, 24, 24)
 	return _kiki_portrait
 
+var _tody_portrait: AtlasTexture = null
+func _get_tody_portrait() -> AtlasTexture:
+	if _tody_portrait == null:
+		_tody_portrait = AtlasTexture.new()
+		_tody_portrait.atlas = preload("res://assets/art/characters/tody/tody_parado.png")
+		_tody_portrait.region = Rect2(4, 4, 24, 24)
+	return _tody_portrait
+
 func update_for_player(player: CharacterBody2D) -> void:
 	if not player:
 		return
@@ -124,6 +133,8 @@ func update_for_player(player: CharacterBody2D) -> void:
 		set_character_portrait(TEXTURE_PORTRAIT_CAJU)
 	elif player.character_id == "kiki":
 		set_character_portrait(TEXTURE_PORTRAIT_KIKI)
+	elif player.character_id == "tody":
+		set_character_portrait(TEXTURE_PORTRAIT_TODY)
 
 func _update_hearts_display() -> void:
 	for i in range(heart_icons.size()):

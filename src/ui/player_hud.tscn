@@ -1,14 +1,14 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bwlyq7dkge3ja"]
 
-[ext_resource type="Script" path="res://src/ui/player_hud.gd" id="1_hudgd"]
+[ext_resource type="Script" uid="uid://codvtvgpaw1g0" path="res://src/ui/player_hud.gd" id="1_hudgd"]
 [ext_resource type="Texture2D" uid="uid://bvkunyq4dv8qu" path="res://assets/art/ui/personagem_caju.png" id="2_portr"]
 [ext_resource type="Texture2D" uid="uid://djdxi8hhbkwp6" path="res://assets/art/ui/coracao_cheio.png" id="3_heart"]
 
-[node name="PlayerHUD" type="CanvasLayer"]
+[node name="PlayerHUD" type="CanvasLayer" unique_id=576224389]
 layer = 10
 script = ExtResource("1_hudgd")
 
-[node name="HUDControl" type="Control" parent="."]
+[node name="HUDControl" type="Control" parent="." unique_id=771557475]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUDControl"]
+[node name="MarginContainer" type="MarginContainer" parent="HUDControl" unique_id=1115540506]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
@@ -25,34 +25,34 @@ offset_right = 85.0
 offset_bottom = 31.0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUDControl/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDControl/MarginContainer" unique_id=1343982021]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Portrait" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer"]
+[node name="Portrait" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer" unique_id=1227741211]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 texture = ExtResource("2_portr")
 stretch_mode = 3
 
-[node name="HeartsContainer" type="HBoxContainer" parent="HUDControl/MarginContainer/HBoxContainer"]
+[node name="HeartsContainer" type="HBoxContainer" parent="HUDControl/MarginContainer/HBoxContainer" unique_id=508249251]
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Heart1" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer"]
+[node name="Heart1" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer" unique_id=1867894625]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_heart")
 stretch_mode = 3
 
-[node name="Heart2" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer"]
+[node name="Heart2" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer" unique_id=36612981]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_heart")
 stretch_mode = 3
 
-[node name="Heart3" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer"]
+[node name="Heart3" type="TextureRect" parent="HUDControl/MarginContainer/HBoxContainer/HeartsContainer" unique_id=2023804853]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("3_heart")

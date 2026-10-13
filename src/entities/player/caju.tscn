@@ -103,6 +103,7 @@ collision_layer = 2
 script = ExtResource("1_7gxvo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1913726606]
+visible = false
 show_behind_parent = true
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_dtg5i")
