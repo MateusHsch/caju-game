@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c6v2j8xap2lkn"]
+
+[ext_resource type="Script" uid="uid://c1ys34xiageyf" path="res://src/ui/items_hud.gd" id="1_ihud"]
+[ext_resource type="Texture2D" uid="uid://c33ffw1npdo73" path="res://assets/art/world/objects/bottle.png" id="2_btlic"]
+
+[node name="ItemsHUD" type="CanvasLayer" unique_id=629566034]
+layer = 10
+script = ExtResource("1_ihud")
+
+[node name="RootControl" type="Control" parent="." unique_id=1156170546]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RootControl" unique_id=1693530189]
+layout_mode = 1
+offset_left = 6.0
+offset_top = 34.0
+offset_right = 120.0
+offset_bottom = 66.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootControl/MarginContainer" unique_id=1518650149]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LabelPrompt" type="Label" parent="RootControl/MarginContainer/VBoxContainer" unique_id=529948873]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.1, 0.08, 1)
+theme_override_font_sizes/font_size = 7
+text = "Colete os seus pertences:"
+
+[node name="ItemRow" type="HBoxContainer" parent="RootControl/MarginContainer/VBoxContainer" unique_id=226682879]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ItemIcon" type="TextureRect" parent="RootControl/MarginContainer/VBoxContainer/ItemRow" unique_id=1945735980]
+custom_minimum_size = Vector2(10, 16)
+layout_mode = 2
+texture = ExtResource("2_btlic")
+stretch_mode = 3
+
+[node name="LabelCount" type="Label" parent="RootControl/MarginContainer/VBoxContainer/ItemRow" unique_id=900190071]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.1, 0.08, 1)
+theme_override_font_sizes/font_size = 8
+text = "0 / 1"
